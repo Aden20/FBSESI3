@@ -5,7 +5,9 @@
     <title>FB Sesi 3</title>
 </head>
 <body>
-
+    <p style="background: maroon; color: white; padding: 10px;">
+        NB : Bisa cari sesuai dengan nama, rotasi, orbit, diameter.
+    </p>
     Name : <input type="text" placeholder="Masukan data"><button>Filter</button>
     <br>
     <br>
@@ -26,6 +28,7 @@
     <hr>
 
     Hasil : <br>
+    <div id="label"></div>
     <div id="hasil"></div>
 
 <script src="app.js"></script>
@@ -34,6 +37,7 @@
     var result = data.results;
     var tableRow = document.querySelectorAll("table")[0];
     var hasil = document.getElementById("hasil");
+    var label = document.getElementById("label");
     var inputHasil = document.querySelectorAll("input")[0];
     var btnHasil = document.querySelectorAll("button")[0];
 
@@ -48,9 +52,17 @@
 
     function cari(){
         for(var i = 0; i < result.length; i++){
-            console.log(result[i])
             if(inputHasil.value == result[i].name){
-                hasil.innerHTML = "<table border='1'><tr><td>" + result[i].name + "</td><td>" + result[i].rotation_period + "</td><td>" + result[i].orbital_period + "</td><td>" + result[i].diameter + "</td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain + "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population + "</td></tr></table>";
+                label.innerHTML = "<h3>Name :</h3>";
+                hasil.innerHTML = "<table border='1'><tr><td><strong>" + result[i].name + "</strong></td><td>" + result[i].rotation_period + "</td><td>" + result[i].orbital_period + "</td><td>" + result[i].diameter + "</td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain + "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population + "</td></tr></table>";
+            }
+            else if(inputHasil.value == result[i].rotation_period){
+                label.innerHTML = "<h3>Rotasi :</h3>";
+                hasil.innerHTML += "<table border='1'><tr><td>" + result[i].name + "</td><td><strong>" + result[i].rotation_period + "</strong></td><td>" + result[i].orbital_period + "</td><td>" + result[i].diameter + "</td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain + "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population + "</td></tr></table>";
+            }
+            else if(inputHasil.value == result[i].diameter){
+                label.innerHTML = "<h3>Diameter :</h3>";
+                hasil.innerHTML += "<table border='1'><tr><td>" + result[i].name + "</td><td>" + result[i].rotation_period + "</td><td>" + result[i].orbital_period + "</td><td><strong>" + result[i].diameter + "</stong></td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain + "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population + "</td></tr></table>";
             }
         }
     }
