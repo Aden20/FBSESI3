@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FB Sesi 3</title>
+</head>
+<body>
+
+    Name : <input type="text" placeholder="Masukan data"><button>Filter</button>
+    <br>
+    <br>
+    <table border="1" id="tableMaster"> 
+        <tr>
+            <td>Name</td>
+            <td>rotasi</td>
+            <td>orbit</td>
+            <td>diameter</td>
+            <td>climate</td>
+            <td>gravity</td>
+            <td>terrain</td>
+            <td>surface water</td>
+            <td>populasi</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    Hasil : <br>
+    <div id="hasil"></div>
+
+<script src="app.js"></script>
+<script>
+
+    var result = data.results;
+    var tableRow = document.querySelectorAll("table")[0];
+    var hasil = document.getElementById("hasil");
+    var inputHasil = document.querySelectorAll("input")[0];
+    var btnHasil = document.querySelectorAll("button")[0];
+
+    for(var i = 0; i < result.length; i++){
+        tableRow.innerHTML += "<tr><td>" + result[i].name + "</td><td>" + result[i].rotation_period + "</td><td>" + result[i].orbital_period + "</td><td>" + result[i].diameter + "</td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain + "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population + "</td></tr>";
+
+        var arryNew = [];
+        var stringSplit = result[i].name;
+        // arryNew.push(stringSplit);
+    }
+
+
+    function cari(){
+        for(var i = 0; i < result.length; i++){
+            console.log(result[i])
+            if(inputHasil.value == result[i].name){
+                hasil.innerHTML = "<table border='1'><tr><td>" + result[i].name + "</td><td>" + result[i].rotation_period + "</td><td>" + result[i].orbital_period + "</td><td>" + result[i].diameter + "</td><td>" + result[i].climate + "</td><td>" + result[i].gravity + "</td><td>" + result[i].terrain + "</td><td>" + result[i].surface_water + "</td><td>" + result[i].population + "</td></tr></table>";
+            }
+        }
+    }
+
+
+    btnHasil.addEventListener("click", cari)
+
+</script>
+</body>
+</html>
